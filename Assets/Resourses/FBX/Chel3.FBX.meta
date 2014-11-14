@@ -1,0 +1,713 @@
+fileFormatVersion: 2
+guid: 0c675013d46b04b21896111ff0944120
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bone004
+    100002: Bone005
+    100004: Bone009
+    100006: Bone013
+    100008: Bone014
+    100010: Bone015
+    100012: BoneBedro
+    100014: BoneBedro002
+    100016: BoneGolen
+    100018: BoneGolen002
+    100020: BoneKist
+    100022: BoneKist002
+    100024: BonePeredplicha
+    100026: BonePeredplichaDal
+    100028: BonePleche
+    100030: BonePlecheDal
+    100032: BoneStupnja
+    100034: BoneStupnja002
+    100036: //RootNode
+    100038: IK Chain001
+    100040: IK Chain002
+    100042: IK Chain004
+    100044: IK Chain005
+    100046: IK Chain011
+    100048: IK Chain012
+    100050: IK Chain014
+    100052: IK Chain015
+    100054: IK Chain_nogal
+    100056: IK ChainDal
+    100058: kirka
+    100060: kist
+    100062: man_center_control
+    100064: mesh_bedro001
+    100066: mesh_bedro_dal
+    100068: mesh_golen001
+    100070: mesh_golen_dal
+    100072: mesh_golova
+    100074: mesh_grudak
+    100076: mesh_jivit
+    100078: mesh_peredplicha
+    100080: mesh_peredplicha_dal
+    100082: mesh_pleche
+    100084: mesh_pleche_dal
+    100086: mesh_stopa001
+    100088: mesh_stopa_dal
+    100090: Text001
+    100092: Text002
+    100094: Text003
+    100096: Text004
+    100098: Text005
+    400000: Bone004
+    400002: Bone005
+    400004: Bone009
+    400006: Bone013
+    400008: Bone014
+    400010: Bone015
+    400012: BoneBedro
+    400014: BoneBedro002
+    400016: BoneGolen
+    400018: BoneGolen002
+    400020: BoneKist
+    400022: BoneKist002
+    400024: BonePeredplicha
+    400026: BonePeredplichaDal
+    400028: BonePleche
+    400030: BonePlecheDal
+    400032: BoneStupnja
+    400034: BoneStupnja002
+    400036: //RootNode
+    400038: IK Chain001
+    400040: IK Chain002
+    400042: IK Chain004
+    400044: IK Chain005
+    400046: IK Chain011
+    400048: IK Chain012
+    400050: IK Chain014
+    400052: IK Chain015
+    400054: IK Chain_nogal
+    400056: IK ChainDal
+    400058: kirka
+    400060: kist
+    400062: man_center_control
+    400064: mesh_bedro001
+    400066: mesh_bedro_dal
+    400068: mesh_golen001
+    400070: mesh_golen_dal
+    400072: mesh_golova
+    400074: mesh_grudak
+    400076: mesh_jivit
+    400078: mesh_peredplicha
+    400080: mesh_peredplicha_dal
+    400082: mesh_pleche
+    400084: mesh_pleche_dal
+    400086: mesh_stopa001
+    400088: mesh_stopa_dal
+    400090: Text001
+    400092: Text002
+    400094: Text003
+    400096: Text004
+    400098: Text005
+    2300000: kirka
+    2300002: kist
+    2300004: mesh_bedro001
+    2300006: mesh_bedro_dal
+    2300008: mesh_golen001
+    2300010: mesh_golen_dal
+    2300012: mesh_golova
+    2300014: mesh_grudak
+    2300016: mesh_jivit
+    2300018: mesh_peredplicha
+    2300020: mesh_peredplicha_dal
+    2300022: mesh_pleche
+    2300024: mesh_pleche_dal
+    2300026: mesh_stopa001
+    2300028: mesh_stopa_dal
+    3300000: kirka
+    3300002: kist
+    3300004: mesh_bedro001
+    3300006: mesh_bedro_dal
+    3300008: mesh_golen001
+    3300010: mesh_golen_dal
+    3300012: mesh_golova
+    3300014: mesh_grudak
+    3300016: mesh_jivit
+    3300018: mesh_peredplicha
+    3300020: mesh_peredplicha_dal
+    3300022: mesh_pleche
+    3300024: mesh_pleche_dal
+    3300026: mesh_stopa001
+    3300028: mesh_stopa_dal
+    4300000: mesh_grudak
+    4300002: mesh_golova
+    4300004: mesh_jivit
+    4300006: mesh_stopa001
+    4300008: mesh_golen001
+    4300010: mesh_bedro001
+    4300012: mesh_stopa_dal
+    4300014: mesh_golen_dal
+    4300016: mesh_bedro_dal
+    4300018: mesh_peredplicha
+    4300020: mesh_pleche
+    4300022: mesh_pleche_dal
+    4300024: mesh_peredplicha_dal
+    4300026: kirka
+    4300028: kist
+    7400000: Jump
+    7400002: Strike
+    7400004: Success
+    7400006: Idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jump
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain005
+        weight: 1
+      - path: IK Chain005/IK Chain004
+        weight: 1
+      - path: IK Chain005/kirka
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011/IK Chain012
+        weight: 1
+      - path: IK Chain005/kirka/kist
+        weight: 1
+      - path: man_center_control
+        weight: 1
+      - path: man_center_control/IK Chain_nogal
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002/IK Chain001
+        weight: 1
+      - path: man_center_control/IK ChainDal
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015/IK Chain014
+        weight: 1
+      - path: man_center_control/mesh_grudak
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist/Bone009
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/mesh_peredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/mesh_pleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002/Bone013
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/mesh_peredplicha_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/mesh_pleche_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_golova
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004/Bone005
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/mesh_stopa001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/mesh_golen001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/mesh_bedro001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014/Bone015
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/mesh_stopa_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/mesh_golen_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/mesh_bedro_dal
+        weight: 1
+      - path: Text001
+        weight: 1
+      - path: Text002
+        weight: 1
+      - path: Text003
+        weight: 1
+      - path: Text004
+        weight: 1
+      - path: Text005
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Strike
+      takeName: Take 001
+      firstFrame: 9
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain005
+        weight: 1
+      - path: IK Chain005/IK Chain004
+        weight: 1
+      - path: IK Chain005/kirka
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011/IK Chain012
+        weight: 1
+      - path: IK Chain005/kirka/kist
+        weight: 1
+      - path: man_center_control
+        weight: 1
+      - path: man_center_control/IK Chain_nogal
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002/IK Chain001
+        weight: 1
+      - path: man_center_control/IK ChainDal
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015/IK Chain014
+        weight: 1
+      - path: man_center_control/mesh_grudak
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist/Bone009
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/mesh_peredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/mesh_pleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002/Bone013
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/mesh_peredplicha_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/mesh_pleche_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_golova
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004/Bone005
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/mesh_stopa001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/mesh_golen001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/mesh_bedro001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014/Bone015
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/mesh_stopa_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/mesh_golen_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/mesh_bedro_dal
+        weight: 1
+      - path: Text001
+        weight: 1
+      - path: Text002
+        weight: 1
+      - path: Text003
+        weight: 1
+      - path: Text004
+        weight: 1
+      - path: Text005
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Success
+      takeName: Take 001
+      firstFrame: 16
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain005
+        weight: 1
+      - path: IK Chain005/IK Chain004
+        weight: 1
+      - path: IK Chain005/kirka
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011/IK Chain012
+        weight: 1
+      - path: IK Chain005/kirka/kist
+        weight: 1
+      - path: man_center_control
+        weight: 1
+      - path: man_center_control/IK Chain_nogal
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002/IK Chain001
+        weight: 1
+      - path: man_center_control/IK ChainDal
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015/IK Chain014
+        weight: 1
+      - path: man_center_control/mesh_grudak
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist/Bone009
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/mesh_peredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/mesh_pleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002/Bone013
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/mesh_peredplicha_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/mesh_pleche_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_golova
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004/Bone005
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/mesh_stopa001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/mesh_golen001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/mesh_bedro001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014/Bone015
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/mesh_stopa_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/mesh_golen_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/mesh_bedro_dal
+        weight: 1
+      - path: Text001
+        weight: 1
+      - path: Text002
+        weight: 1
+      - path: Text003
+        weight: 1
+      - path: Text004
+        weight: 1
+      - path: Text005
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 35
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain005
+        weight: 1
+      - path: IK Chain005/IK Chain004
+        weight: 1
+      - path: IK Chain005/kirka
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011
+        weight: 1
+      - path: IK Chain005/kirka/IK Chain011/IK Chain012
+        weight: 1
+      - path: IK Chain005/kirka/kist
+        weight: 1
+      - path: man_center_control
+        weight: 1
+      - path: man_center_control/IK Chain_nogal
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002
+        weight: 1
+      - path: man_center_control/IK Chain_nogal/IK Chain002/IK Chain001
+        weight: 1
+      - path: man_center_control/IK ChainDal
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015
+        weight: 1
+      - path: man_center_control/IK ChainDal/IK Chain015/IK Chain014
+        weight: 1
+      - path: man_center_control/mesh_grudak
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/BoneKist/Bone009
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/BonePeredplicha/mesh_peredplicha
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePleche/mesh_pleche
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/BoneKist002/Bone013
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/BonePeredplichaDal/mesh_peredplicha_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/BonePlecheDal/mesh_pleche_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_golova
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/Bone004/Bone005
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/BoneStupnja/mesh_stopa001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/BoneGolen/mesh_golen001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro/mesh_bedro001
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/Bone014/Bone015
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/BoneStupnja002/mesh_stopa_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/BoneGolen002/mesh_golen_dal
+        weight: 1
+      - path: man_center_control/mesh_grudak/mesh_jivit/BoneBedro002/mesh_bedro_dal
+        weight: 1
+      - path: Text001
+        weight: 1
+      - path: Text002
+        weight: 1
+      - path: Text003
+        weight: 1
+      - path: Text004
+        weight: 1
+      - path: Text005
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

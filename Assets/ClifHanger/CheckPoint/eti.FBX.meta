@@ -1,0 +1,461 @@
+fileFormatVersion: 2
+guid: bd8d5ff73c3424ef09150db13e456781
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bone016
+    100002: Bone017
+    100004: Bone018
+    100006: Bone019
+    100008: Bone020
+    100010: Bone021
+    100012: Bone022
+    100014: Bone023
+    100016: Bone024
+    100018: Bone025
+    100020: Bone026
+    100022: //RootNode
+    100024: IK Chain016
+    100026: IK Chain017
+    100028: IK Chain018
+    100030: IK Chain019
+    100032: IK Chain020
+    100034: IK Chain021
+    100036: Object001
+    100038: Object002
+    100040: Object003
+    100042: Object004
+    100044: Object006
+    100046: Object007
+    100048: Object008
+    100050: Object009
+    100052: Object010
+    100054: Object011
+    100056: Object012
+    100058: Object013
+    100060: Object014
+    100062: Object015
+    100064: Object016
+    100066: Object017
+    400000: Bone016
+    400002: Bone017
+    400004: Bone018
+    400006: Bone019
+    400008: Bone020
+    400010: Bone021
+    400012: Bone022
+    400014: Bone023
+    400016: Bone024
+    400018: Bone025
+    400020: Bone026
+    400022: //RootNode
+    400024: IK Chain016
+    400026: IK Chain017
+    400028: IK Chain018
+    400030: IK Chain019
+    400032: IK Chain020
+    400034: IK Chain021
+    400036: Object001
+    400038: Object002
+    400040: Object003
+    400042: Object004
+    400044: Object006
+    400046: Object007
+    400048: Object008
+    400050: Object009
+    400052: Object010
+    400054: Object011
+    400056: Object012
+    400058: Object013
+    400060: Object014
+    400062: Object015
+    400064: Object016
+    400066: Object017
+    2300000: Object001
+    2300002: Object002
+    2300004: Object003
+    2300006: Object004
+    2300008: Object006
+    2300010: Object007
+    2300012: Object008
+    2300014: Object009
+    2300016: Object010
+    2300018: Object011
+    2300020: Object012
+    2300022: Object013
+    2300024: Object014
+    2300026: Object015
+    2300028: Object016
+    2300030: Object017
+    3300000: Object001
+    3300002: Object002
+    3300004: Object003
+    3300006: Object004
+    3300008: Object006
+    3300010: Object007
+    3300012: Object008
+    3300014: Object009
+    3300016: Object010
+    3300018: Object011
+    3300020: Object012
+    3300022: Object013
+    3300024: Object014
+    3300026: Object015
+    3300028: Object016
+    3300030: Object017
+    4300000: Object012
+    4300002: Object011
+    4300004: Object004
+    4300006: Object003
+    4300008: Object008
+    4300010: Object013
+    4300012: Object014
+    4300014: Object015
+    4300016: Object010
+    4300018: Object009
+    4300020: Object001
+    4300022: Object006
+    4300024: Object007
+    4300026: Object002
+    4300028: Object017
+    4300030: Object016
+    7400000: Idle_Sit
+    7400002: Talk
+    7400004: Idle_StandUp
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle_Sit
+      takeName: eti
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain018
+        weight: 1
+      - path: IK Chain018/IK Chain017
+        weight: 1
+      - path: IK Chain018/IK Chain017/IK Chain016
+        weight: 1
+      - path: IK Chain021
+        weight: 1
+      - path: IK Chain021/IK Chain020
+        weight: 1
+      - path: IK Chain021/IK Chain020/IK Chain019
+        weight: 1
+      - path: Object012
+        weight: 1
+      - path: Object012/Bone016
+        weight: 1
+      - path: Object012/Bone016/Bone017
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Object001
+        weight: 1
+      - path: Object012/Bone016/Bone017/Object006
+        weight: 1
+      - path: Object012/Bone016/Object007
+        weight: 1
+      - path: Object012/Bone021
+        weight: 1
+      - path: Object012/Bone021/Bone022
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025/Bone026
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Object002
+        weight: 1
+      - path: Object012/Bone021/Bone022/Object017
+        weight: 1
+      - path: Object012/Bone021/Object016
+        weight: 1
+      - path: Object012/Object011
+        weight: 1
+      - path: Object012/Object011/Object004
+        weight: 1
+      - path: Object012/Object011/Object004/Object003
+        weight: 1
+      - path: Object012/Object011/Object004/Object003/Object008
+        weight: 1
+      - path: Object012/Object011/Object010
+        weight: 1
+      - path: Object012/Object011/Object010/Object009
+        weight: 1
+      - path: Object012/Object011/Object013
+        weight: 1
+      - path: Object012/Object011/Object013/Object014
+        weight: 1
+      - path: Object012/Object011/Object013/Object014/Object015
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Talk
+      takeName: eti
+      firstFrame: 60
+      lastFrame: 133
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain018
+        weight: 1
+      - path: IK Chain018/IK Chain017
+        weight: 1
+      - path: IK Chain018/IK Chain017/IK Chain016
+        weight: 1
+      - path: IK Chain021
+        weight: 1
+      - path: IK Chain021/IK Chain020
+        weight: 1
+      - path: IK Chain021/IK Chain020/IK Chain019
+        weight: 1
+      - path: Object012
+        weight: 1
+      - path: Object012/Bone016
+        weight: 1
+      - path: Object012/Bone016/Bone017
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Object001
+        weight: 1
+      - path: Object012/Bone016/Bone017/Object006
+        weight: 1
+      - path: Object012/Bone016/Object007
+        weight: 1
+      - path: Object012/Bone021
+        weight: 1
+      - path: Object012/Bone021/Bone022
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025/Bone026
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Object002
+        weight: 1
+      - path: Object012/Bone021/Bone022/Object017
+        weight: 1
+      - path: Object012/Bone021/Object016
+        weight: 1
+      - path: Object012/Object011
+        weight: 1
+      - path: Object012/Object011/Object004
+        weight: 1
+      - path: Object012/Object011/Object004/Object003
+        weight: 1
+      - path: Object012/Object011/Object004/Object003/Object008
+        weight: 1
+      - path: Object012/Object011/Object010
+        weight: 1
+      - path: Object012/Object011/Object010/Object009
+        weight: 1
+      - path: Object012/Object011/Object013
+        weight: 1
+      - path: Object012/Object011/Object013/Object014
+        weight: 1
+      - path: Object012/Object011/Object013/Object014/Object015
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle_StandUp
+      takeName: eti
+      firstFrame: 133
+      lastFrame: 250
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: IK Chain018
+        weight: 1
+      - path: IK Chain018/IK Chain017
+        weight: 1
+      - path: IK Chain018/IK Chain017/IK Chain016
+        weight: 1
+      - path: IK Chain021
+        weight: 1
+      - path: IK Chain021/IK Chain020
+        weight: 1
+      - path: IK Chain021/IK Chain020/IK Chain019
+        weight: 1
+      - path: Object012
+        weight: 1
+      - path: Object012/Bone016
+        weight: 1
+      - path: Object012/Bone016/Bone017
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Object012/Bone016/Bone017/Bone018/Object001
+        weight: 1
+      - path: Object012/Bone016/Bone017/Object006
+        weight: 1
+      - path: Object012/Bone016/Object007
+        weight: 1
+      - path: Object012/Bone021
+        weight: 1
+      - path: Object012/Bone021/Bone022
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Bone024/Bone025/Bone026
+        weight: 1
+      - path: Object012/Bone021/Bone022/Bone023/Object002
+        weight: 1
+      - path: Object012/Bone021/Bone022/Object017
+        weight: 1
+      - path: Object012/Bone021/Object016
+        weight: 1
+      - path: Object012/Object011
+        weight: 1
+      - path: Object012/Object011/Object004
+        weight: 1
+      - path: Object012/Object011/Object004/Object003
+        weight: 1
+      - path: Object012/Object011/Object004/Object003/Object008
+        weight: 1
+      - path: Object012/Object011/Object010
+        weight: 1
+      - path: Object012/Object011/Object010/Object009
+        weight: 1
+      - path: Object012/Object011/Object013
+        weight: 1
+      - path: Object012/Object011/Object013/Object014
+        weight: 1
+      - path: Object012/Object011/Object013/Object014/Object015
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,12 @@
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.dll
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\FuseNativeAPI.dll
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\GitStigol\RockClimber\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\GitStigol\RockClimber\obj\Debug\UnityVS.RockClimber.CSharp.Plugins.csprojResolveAssemblyReference.cache
+C:\GitStigol\RockClimber\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\GitStigol\RockClimber\obj\Debug\Assembly-CSharp-firstpass.pdb
