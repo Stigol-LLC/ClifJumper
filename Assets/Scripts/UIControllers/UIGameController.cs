@@ -21,6 +21,14 @@ public class UIGameController : MonoBehaviour {
 	  
 	}
 
+    public void ShowMenu() {
+        gameObject.SetActive( true );
+    }
+
+    public void HideMenu() {
+        gameObject.SetActive( false );
+    }
+
     public void setHeight( int height ) {
         heightText.text = height + "m";
     }
@@ -29,12 +37,8 @@ public class UIGameController : MonoBehaviour {
         coinsText.text = coinsValue.ToString();
     }
 
-    public void onTouchedScreen() {
-
-     
+    public void onTouchedScreen() {  
             onTouched();
-         
-
     }
 
 

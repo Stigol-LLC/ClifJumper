@@ -1,0 +1,17 @@
+C:\GitStigol\ClifJumper\obj\Debug\UnityVS.ClifJumper.CSharp.Editor.csprojResolveAssemblyReference.cache
+C:\GitStigol\ClifJumper\obj\Debug\Assembly-CSharp-Editor.dll
+C:\GitStigol\ClifJumper\obj\Debug\Assembly-CSharp-Editor.pdb
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\Assembly-CSharp-Editor.pdb
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\FuseNativeAPI.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\SyntaxTree.VisualStudio.Unity.Bridge.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\SyntaxTree.VisualStudio.Unity.Messaging.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityVS.VersionSpecific.dll
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\GitStigol\ClifJumper\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml

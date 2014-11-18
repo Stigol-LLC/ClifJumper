@@ -7,8 +7,8 @@ public class GMProgress {
 
     [NonSerialized]
     public int currentHeight ;
-
-    public int startHeight;
+    public int bestHeight;
+  
     public int totalCoinsCollected;
 
 }

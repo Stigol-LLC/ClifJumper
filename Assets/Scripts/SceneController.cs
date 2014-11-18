@@ -13,8 +13,12 @@ public class SceneController : MonoBehaviour {
     [HideInInspector]
     public UIGameOverController gameOverController;
 
-    public GameObject GameCanvasGO;
 
+    public GameObject startGameMenuGO;
+    [HideInInspector]
+    public UIMainMenuController startGameMenuController;
+
+    public GameObject GameCanvasGO;
     [HideInInspector]
     public UIGameController gameController;
 
@@ -37,10 +41,13 @@ public class SceneController : MonoBehaviour {
 	    levelRocksController = levelRocksControllerGO.GetComponent<LevelRocksController>();
 	    paralaxBackgroundController = paralaxBackgroundGO.GetComponent<ParalaxManager>();
 	    condorController = condorGO.GetComponent<CondorController>();
+	    startGameMenuController = startGameMenuGO.GetComponent<UIMainMenuController>();
 	}
 
     void Start() {
+       startGameMenuController.ShowMenu();
         gameOverController.HideMenu();
+        gameController.HideMenu();
         GameManager.sceneController.hero.StartHero();
         GameManager.HeroCamera.StartCamera();
         levelRocksController.StartRocks();
@@ -53,6 +60,8 @@ public class SceneController : MonoBehaviour {
     }
 
     public void RestartGame() {
+        gameController.HideMenu();
+        startGameMenuController.ShowMenu();
         GameManager.sceneController.hero.RestartHero();
         GameManager.HeroCamera.Restart();
         GameManager.sceneController.levelRocksController.Restart();
@@ -61,7 +70,7 @@ public class SceneController : MonoBehaviour {
         paralaxBackgroundController.RestartBackground();
        // heroGO.SetActive(true);
         levelRocksControllerGO.SetActive(true);
-        GameCanvasGO.SetActive( true );
+      //  GameCanvasGO.SetActive( true );
 
       //  FixHeroOnRock();
       //  GameManager.HeroCamera.Follow();
@@ -93,8 +102,18 @@ public class SceneController : MonoBehaviour {
 
     public void EndGame() {
      //   heroGO.SetActive( false );
-        levelRocksControllerGO.SetActive( false );
+      //  levelRocksControllerGO.SetActive( false );
         GameCanvasGO.SetActive( false );
         gameOverController.ShowMenu();
+    }
+
+    public void SaveHero() {
+        Vector3 heroPos = GameManager.sceneController.hero.fallCrack.transform.position;
+        GameManager.sceneController.condorController.CatchHero(heroPos);
+       // GameManager.HeroCamera.FollowDeath();
+        GameCanvasGO.SetActive(true);
+        GameManager.sceneController.hero.CondorSave();
+        GameManager.HeroCamera.Follow();
+        
     }
 }

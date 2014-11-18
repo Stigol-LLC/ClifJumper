@@ -9,6 +9,9 @@ public class ParalaxManager : MonoBehaviour {
     public List<GameObject> backGroundParalaxList;
     private HeroCamera heroCamera;
     private List<ParalaxBackGroundController> backGroundParalaxControllers;
+    public GameObject JumpSpeedGO ;
+
+    private JumpSpeedController jumpSpeedEffectController;
 
     void Awake() {
         heroCamera = GameManager.HeroCamera;
@@ -19,6 +22,8 @@ public class ParalaxManager : MonoBehaviour {
             bgController.InitBackGround(heroCamera);
             backGroundParalaxControllers.Add( bgController );
         }
+
+        jumpSpeedEffectController = JumpSpeedGO.GetComponent<JumpSpeedController>();
     }
 
     public void RestartBackground() {
@@ -34,5 +39,12 @@ public class ParalaxManager : MonoBehaviour {
         }
     }
 
+    public void startSpeedEffect(float fadeTime) {
+        
+    }
+
+    void stopSpeedEffect(float fadeTime) {
+        
+    }
 
 }

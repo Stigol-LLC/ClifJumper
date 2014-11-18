@@ -8,9 +8,11 @@ public class HeroCamera : MonoBehaviour {
     public GameObject FollowGameObject;
 
     private bool isFollowing = false;
+    private bool isCondorFollowing = false;
 	// Use this for initialization
 
     private bool deathFollow;
+    private bool jumpFromCaveFollow;
     
     private Vector3 cameraShift;
     private Camera heroCamera;
@@ -20,6 +22,8 @@ public class HeroCamera : MonoBehaviour {
 
     public GameObject paralaxGO;
     private ParalaxManager paralaxManager;
+
+    private Vector3 cameraStartPosition;
 
     void OnDrawGizmosSelected()
     {
@@ -36,8 +40,8 @@ public class HeroCamera : MonoBehaviour {
         float screenAspect = (float)Screen.width / (float)Screen.height;
         cameraWidth = cameraHeight * screenAspect;
 
-        Vector3 rockScreenBoundsCenter = new Vector3(heroCamera.transform.position.x, heroCamera.transform.position.y - cameraHeight , heroCamera.transform.position.z);
-        RockScreenBounds = new Bounds(rockScreenBoundsCenter, new Vector3(cameraWidth , cameraHeight * 3 , 0));
+        Vector3 rockScreenBoundsCenter = new Vector3(heroCamera.transform.position.x, heroCamera.transform.position.y + cameraHeight * 10 , heroCamera.transform.position.z);
+        RockScreenBounds = new Bounds(rockScreenBoundsCenter, new Vector3(cameraWidth , cameraHeight * 25 , 0));
         deathFollow = false;
 
         paralaxManager = paralaxGO.GetComponent<ParalaxManager>();
@@ -63,6 +67,7 @@ public class HeroCamera : MonoBehaviour {
     public void Restart() {
         deathFollow = false;
         isFollowing = false;
+        isCondorFollowing = false;
         restartPos();
         StartCamera();
     }
@@ -70,7 +75,7 @@ public class HeroCamera : MonoBehaviour {
     void restartPos() {
         heroCamera.transform.position = new Vector3(-cameraWidth / 3, 0, heroCamera.transform.position.z);
         heroCamera.transform.localPosition = new Vector3(-cameraWidth / 3, 0, heroCamera.transform.localPosition.z);
-      
+        
     }
    
 
@@ -79,15 +84,34 @@ public class HeroCamera : MonoBehaviour {
         Vector3 heroSizes = GameManager.sceneController.hero.getBounds().size;
         cameraShift = new Vector3(
                 0,
-                -( heroCamera.transform.position.y - heroSizes.y * 1.25f  ),
+              //  getCameraBounds().size.y / 2 - heroSizes.y / 2,
+              getCameraBounds().size.y / 2 - heroSizes.y ,
+               // -( heroCamera.transform.position.y - heroSizes.y * 1.25f  ),
                 heroCamera.transform.position.z );
-
+        
     }
 
  
     public void Follow() {
-        Debug.Log( "FOLLOW CAMERA" );
+//        Debug.Log( "FOLLOW CAMERA" );
+        Vector3 heroSizes = GameManager.sceneController.hero.getBounds().size;
+        
+
+     //   cameraShift = new Vector3(
+      //          0,
+     //           getCameraBounds().size.y / 2 - heroSizes.y,
+      //          heroCamera.transform.position.z);
         isFollowing = true;
+    }
+
+    public void FollowCondor() {
+      
+        Vector3 heroSizes = GameManager.sceneController.hero.getBounds().size;
+        cameraShift = new Vector3(
+                0,
+                getCameraBounds().size.y / 2 - heroSizes.y,
+                heroCamera.transform.position.z);
+        isCondorFollowing = true;
     }
 
     public void FollowDeath()
@@ -97,11 +121,28 @@ public class HeroCamera : MonoBehaviour {
         deathFollow = true;
     }
 
+    public void FollowJumpFromCave()
+    {
+        Vector3 heroSizes = GameManager.sceneController.hero.getBounds().size;
+        cameraShift = new Vector3(
+        0,
+        getCameraBounds().size.y / 2 - heroSizes.y,
+        heroCamera.transform.position.z);
+        jumpFromCaveFollow = true;
+    }
+
+    public void StopFollowing() {
+        deathFollow = false;
+        isFollowing = false;
+        isCondorFollowing = false;
+
+    }
+
     void Update() {
  
       //  Debug.Log( "Following - " + isFollowing + "  Death follow - " + deathFollow );
 
-        if ( !((isFollowing) || (deathFollow)))
+        if ( !((isFollowing) || (deathFollow) || (isCondorFollowing) || (jumpFromCaveFollow)))
             return;
 
         
@@ -112,7 +153,12 @@ public class HeroCamera : MonoBehaviour {
         float dX = FollowGameObject.transform.position.x - cameraPosition.x + cameraShift.x;
         float dY = FollowGameObject.transform.position.y - cameraPosition.y + cameraShift.y;
 
-        
+
+        if ( isCondorFollowing ) {
+            //dX = FollowGameObject.transform.position.x;
+        }
+
+       // float dX = 0;
         
 
         if ( ( Mathf.Abs( dX ) < 2 ) &&
@@ -123,7 +169,13 @@ public class HeroCamera : MonoBehaviour {
         float smoothKoef = 8;
 
         if ( deathFollow == true )
-            smoothKoef = 8;
+            smoothKoef = 4;
+
+        if ( isCondorFollowing )
+            smoothKoef = 10;
+
+        if ( jumpFromCaveFollow )
+            smoothKoef = 4;
 
         float smoothDX = dX / smoothKoef;
         float smoothDY = dY / smoothKoef;
@@ -135,8 +187,8 @@ public class HeroCamera : MonoBehaviour {
 //            smoothDY = 1 * Mathf.Sign( smoothDY );
 
         heroCamera.transform.position = new Vector3(cameraPosition.x + smoothDX, cameraPosition.y + smoothDY, cameraPosition.z);
-   
-//        Debug.Log( "Pos - " + heroCamera.transform.position + "sDX - " + smoothDX + "sDY - " + smoothDY);
+//   Debug.Log( "Camera pos - " + heroCamera.transform.position + "  Follow pos - " + FollowGameObject.transform.position );
+//       Debug.Log( "Pos - " + heroCamera.transform.position + "sDX - " + smoothDX + "sDY - " + smoothDY);
         paralaxManager.ParalaxUpdate();
     
     

@@ -41,6 +41,11 @@ public class HeroJump : MonoBehaviour {
        // }
     }
 
+    public void CondorSave() {
+        heroJumpAnimator.Play( "HeroController_CondorSave" );
+        GameManager.HeroCamera.FollowGameObject = GameManager.sceneController.hero.gameObject;
+    }
+
     public void FlyFromCave() {
         heroJumpAnimator.SetBool("isCatched", false);
         heroJumpAnimator.Play("HeroController_JumpFromCave");
@@ -91,6 +96,10 @@ public class HeroJump : MonoBehaviour {
       
     }
 
+    public void GameOverStopFollow() {
+        GameManager.HeroCamera.StopFollowing();
+    }
+
     public void JumpFromCaveStarted() {
         GameManager.sceneController.hero.FlyFromCaveStarted();
     }
@@ -99,5 +108,13 @@ public class HeroJump : MonoBehaviour {
        // Debug.Log( "MISS" );
         isFalling = true;
         
+    }
+
+    public void SaveFall() {
+        heroJumpAnimator.Play("HeroController_GameOverFall");
+    }
+
+    public void StopAnimator() {
+       // heroJumpAnimator.StopPlayback();
     }
 }

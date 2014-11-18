@@ -18,10 +18,17 @@ public class CondorController : MonoBehaviour {
     private float currentBezierPercentage;
    
     private bool isLegsReady;
+    private bool isReleasingHero;
 
     private Vector3 grabMarkPos;
     private float weightDY;
     private float dWeightDY;
+
+    private Vector3 popUpPosition;
+
+    private Vector3 startCondorPosition;
+    private Vector3 condorMid1Pos;
+    private Vector3 condorMid2Pos;
 
     enum condorState {
         waiting,
@@ -52,29 +59,38 @@ public class CondorController : MonoBehaviour {
         Gizmos.DrawSphere(grabMark.transform.position, 10);
     }
 
-    public void CatchHero() {
+    public void CatchHero(Vector3 crackPos) {
        
 
         Vector3 heroPos = getCatchHeroPosition();
 
-        gameObject.transform.position = new Vector3(heroPos.x - 800, heroPos.y + 400, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(heroPos.x - 800, heroPos.y - 800, gameObject.transform.position.z);
         gameObject.SetActive( true );
-      
-        SetBezier( grabMark.transform.position, heroPos );
+
+        currentBezierPercentage = 0;
+        startCondorPosition = grabMark.transform.position;
+        condorMid1Pos = new Vector3(startCondorPosition.x - 100, startCondorPosition.y - 100, startCondorPosition.z);
+        condorMid2Pos = new Vector3(heroPos.x - 100, heroPos.y - 100, heroPos.z);
+
+
+        SetBezier( startCondorPosition,condorMid1Pos, condorMid2Pos, heroPos );
 
         currentCondorState = condorState.flyingToHero;
         weightDY = 0;
        // isFlyingToHero = true;
 
         isLegsReady = true;
+        isReleasingHero = false;
+
+        popUpPosition = crackPos;
     }
 
-    void SetBezier(Vector3 startPosition, Vector3 endPosition) {
-        Vector3 cPoint1 = new Vector3(startPosition.x - 100, startPosition.y - 100, startPosition.z);
-        Vector3 cPoint2 = new Vector3(endPosition.x - 100, endPosition.y - 100, endPosition.z);
+    void SetBezier(Vector3 startPosition, Vector3 mid1Pos, Vector3 mid2Pos, Vector3 endPosition) {
+       // Vector3 cPoint1 = new Vector3(startPosition.x - 100, startPosition.y - 100, startPosition.z);
+       // Vector3 cPoint2 = new Vector3(endPosition.x - 100, endPosition.y - 100, endPosition.z);
 
-        catchHeroBezier = new Bezier(startPosition, endPosition, cPoint1, cPoint2);
-        currentBezierPercentage = 0;
+        catchHeroBezier = new Bezier(startPosition, endPosition, mid1Pos, mid2Pos);
+        
     }
 
     public Vector3 getCatchHeroPosition() {
@@ -86,11 +102,20 @@ public class CondorController : MonoBehaviour {
         if (currentCondorState == condorState.waiting )
             return;
 
+//        Debug.Log( "POs - " + transform.position );
 
+        Vector3 heroPos;
         switch ( currentCondorState ) {
                 case condorState.flyingToHero:
+                heroPos = getCatchHeroPosition();
+              //      SetBezier(startCondorPosition, condorMid1Pos, condorMid2Pos, heroPos);
+                SetBezier(startCondorPosition, startCondorPosition, heroPos, heroPos);
+
                 if ((currentBezierPercentage > 0.5f) && (isLegsReady))
                 {
+                    
+                   // Debug.Log( "Hero pos - " + heroPos );
+
                     GetLegsReady();
                     currentCondorState = condorState.catchingHero;
                 }
@@ -99,10 +124,20 @@ public class CondorController : MonoBehaviour {
                 break;
 
                 case condorState.catchingHero:
+
+                heroPos = getCatchHeroPosition();
+                 //   SetBezier(startCondorPosition, condorMid1Pos, condorMid2Pos, heroPos);
+                SetBezier(startCondorPosition, startCondorPosition, heroPos, heroPos);
+
+
+
                 if (currentBezierPercentage > 1.0f)
                 {
+
+                    
+
                     currentBezierPercentage = 1.0f;
-                    PutHeroUp();
+                    PutHeroUp(popUpPosition);
                     currentCondorState = condorState.flyingToRock;
                     
                 }
@@ -110,10 +145,15 @@ public class CondorController : MonoBehaviour {
                 break;
 
                 case condorState.flyingToRock:
+                if ( (currentBezierPercentage > 0.9f) && (!isReleasingHero) ) {
+                    ReleaseHero();
+                }
+
+
                 if (currentBezierPercentage > 1.0f)
                 {
                     currentBezierPercentage = 1.0f;
-                    ReleaseHero();
+                    
                     currentCondorState = condorState.releasingHero;
                     
                 }
@@ -131,7 +171,7 @@ public class CondorController : MonoBehaviour {
                 {
                     currentBezierPercentage = 1.0f;  
                     currentCondorState = condorState.waiting;
-
+                    gameObject.SetActive( false );
                 }
                 break;
 
@@ -140,7 +180,13 @@ public class CondorController : MonoBehaviour {
         
 
         gameObject.transform.position = getCondorPositionFromGrabPoint(catchHeroBezier.GetBezierPointAtTime(currentBezierPercentage));
-        currentBezierPercentage += Time.deltaTime;
+
+        float dT = Time.deltaTime;
+
+        if ( currentCondorState == condorState.flyingToRock )
+            dT /= 2;
+
+        currentBezierPercentage +=  dT;
         
     }
 
@@ -161,18 +207,27 @@ public class CondorController : MonoBehaviour {
     void ReleaseHero() {
         GameManager.sceneController.hero.condorRelease();
         grabCondorAnimator.Play("Body_Release");
-       // condorBodyGO.animation.Play("CondorRelease");
+        isReleasingHero = true;
+        // condorBodyGO.animation.Play("CondorRelease");
     }
 
     void GetLegsReady() {
+        isLegsReady = false;
         grabCondorAnimator.Play( "Body_Grab" );
     }
 
-    void PutHeroUp() {
+    void PutHeroUp(Vector3 endPosition) {
         Vector3 heroPos = getCatchHeroPosition();
-        Vector3 endPos = new Vector3(heroPos.x + 200, heroPos.y + 500, heroPos.z);
+       // Vector3 endPos = new Vector3(heroPos.x + 200, heroPos.y + 500, heroPos.z);
+        currentBezierPercentage = 0;
 
-        SetBezier( heroPos,  endPos);
+     //   ve
+
+        condorMid1Pos = new Vector3(grabMark.transform.position.x - 100, grabMark.transform.position.y - 100, grabMark.transform.position.z);
+        condorMid2Pos = new Vector3(endPosition.x - 100, endPosition.y - 100, heroPos.z);
+
+
+        SetBezier( heroPos, condorMid1Pos, condorMid2Pos, endPosition);
 
         GameManager.sceneController.hero.condorCatch();
         grabMarkPos = grabMark.transform.position;
@@ -185,7 +240,11 @@ public class CondorController : MonoBehaviour {
     void FlyAway() {
         Vector3 heroPos = getCatchHeroPosition();
         Vector3 endPos = new Vector3(heroPos.x + 800, heroPos.y + 300, heroPos.z);
+        currentBezierPercentage = 0;
+        condorMid1Pos = new Vector3(heroPos.x - 100, heroPos.y - 100, heroPos.z);
+        condorMid2Pos = new Vector3(endPos.x - 100, endPos.y - 100, heroPos.z);
 
-        SetBezier(heroPos, endPos);
+
+        SetBezier(heroPos, condorMid1Pos, condorMid2Pos, endPos);
     }
 }

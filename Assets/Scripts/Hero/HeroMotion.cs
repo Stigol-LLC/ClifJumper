@@ -64,6 +64,10 @@ public class HeroMotion : MonoBehaviour {
         //motionAnimator.Play( "FailFall" );
     }
 
+    public void SaveFall() {
+        motionAnimator.Play( "FailFall" );
+    }
+
     public void MissedRock() {
         if (isGameOver)
             return;

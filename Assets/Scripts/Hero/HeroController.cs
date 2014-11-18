@@ -30,20 +30,35 @@ public class HeroController : MonoBehaviour {
 
     private float startHeight;
  //   private Animator heroJumpAnimator;
-    private bool isJumpFromCave = true;
+  //  private bool isJumpFromCave = true;
 
-    private bool isFixing;
+   // private bool isFixing;
 
     private Vector2 fixVector;
     private Vector2 rockFixPoint;
 
+    public CrackController fallCrack;
 
     private bool canStrike;
     private int coinsCollected;
     private bool isTouchesEnabled;
 
-    private bool isCondorCatched;
-    
+  //  private bool isCondorCatched;
+    private Bezier jumpBezier;
+    private float moveBezierPercentage;
+    private CrackController jumpCrack;
+    private float jumpFromCaveHeight;
+    enum heroState {
+        waitingForKick,
+        jumpingFromCave,
+        jumpingFromCrack,
+        normal,
+        fixing,
+        condorCatched,
+        
+    }
+
+    private heroState currentHeroState;
 
     void OnDrawGizmosSelected()
     {
@@ -97,8 +112,8 @@ public class HeroController : MonoBehaviour {
 	    assAccParticleEmitter = assAccelerateParticles.GetComponent<ParticleEmitter>();
 
 	    startJumpHeroPos = heroJumpGO.transform.localPosition;
-	    
-	    isFixing = false;
+	    currentHeroState = heroState.waitingForKick;
+	  //  isFixing = false;
        // transform.position = new Vector3(0, 0, transform.position.z);
        // transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
         startHeight = transform.position.y;
@@ -108,13 +123,21 @@ public class HeroController : MonoBehaviour {
 	}
 
     public void condorCatch() {
-        isCondorCatched = true;
+      //  isCondorCatched = true;
+        currentHeroState = heroState.condorCatched;
+        
+        heroJumpController.CondorSave();
+        GameManager.HeroCamera.FollowCondor();
     }
 
     public void condorRelease() {
-        isCondorCatched = false;
-        CrackController crack =  GameManager.sceneController.levelRocksController.getClothestCrack( getFixPoint().y );
-        Catch( crack, 0.3f );
+        GameManager.HeroCamera.StopFollowing();
+       // isCondorCatched = false;
+        currentHeroState = heroState.normal;
+       // CrackController crack =  GameManager.sceneController.levelRocksController.getClothestCrack( getFixPoint().y );
+        Catch( fallCrack, 0.3f );
+        axeController.SetCanCatch(true);
+       
     }
 
     public void StartHero() {
@@ -122,11 +145,12 @@ public class HeroController : MonoBehaviour {
     }
 
     public void RestartHero() {
-        isCondorCatched = false;
+       // isCondorCatched = false;
         transform.position = new Vector3(0, 0, transform.position.z);
         transform.localPosition = new Vector3(0, 0, transform.localPosition.z);
         startHeight = transform.position.y;
-        isFixing = false;
+       // isFixing = false;
+        currentHeroState = heroState.normal;
         heroJumpController.Restart();
         canStrike = true;
 
@@ -135,8 +159,10 @@ public class HeroController : MonoBehaviour {
 
         heroMotionController.ResetHero();
         axeController.SetCanCatch(true);
-        isJumpFromCave = true;
+      //  isJumpFromCave = true;
         isTouchesEnabled = true;
+
+        currentHeroState = heroState.waitingForKick;
 
     }
 
@@ -170,10 +196,12 @@ public class HeroController : MonoBehaviour {
         if (!isTouchesEnabled)
             return;
 
-        if ( isJumpFromCave ) {
-            jumpFromCave();
-         //   GameManager.sceneController.condorController.CatchHero();
-            isTouchesEnabled = false;
+        if ( currentHeroState == heroState.waitingForKick ) {
+            jumpFromCave(100);
+         //   
+            
+
+            Debug.Log( "JUMP FROM CAVE" );
         } else if ( !heroJumpController.isJumping ) {
             jumpFromCrack();
         } else {
@@ -184,15 +212,67 @@ public class HeroController : MonoBehaviour {
 
     }
 
-    void jumpFromCave() {
+    int normalizeHeight(int height) {
+        return 50;
+      
+        if ( height < 20 )
+            return height;
+
+        if ( height < 50 ) {
+            return 20 + ( height - 20 ) / 2;
+        }
+
+        if (height < 100)
+        {
+            return 20 + (height - 20) / 3;
+        }
+
+        if (height < 500)
+        {
+            return 20 + (height - 20) / 10;
+        }
+
+         return 20 + (height - 20) / 50;
+    }
+
+    public void jumpFromCave(int height) {
+        isTouchesEnabled = false;
+        jumpFromCaveHeight = normalizeHeight( height );
         Debug.Log( "HC Jump from cave" );
 
-        isFixing = false;
+       // isFixing = false;
         GameManager.sceneController.levelRocksController.getCave().etiKickHero();
         heroMotionController.KickedFromCave();
-        heroJumpController.FlyFromCave();
+       // heroJumpController.FlyFromCave();
         
-        isJumpFromCave = false;
+      //  isJumpFromCave = false;
+        Invoke( "startHeroJumpFromCave", 1.5f );
+
+        
+
+    }
+
+    void startHeroJumpFromCave() {
+        GameManager.HeroCamera.FollowJumpFromCave();
+        currentHeroState = heroState.jumpingFromCave;
+
+        jumpCrack = GameManager.sceneController.levelRocksController.getClothestCrack(getObjectPosY(jumpFromCaveHeight));
+        // Debug.Log( "JC POS - " + jumpCrack.transform.position );
+        Vector3 startPos = axeController.getFixedPointPosition();
+       Vector3 crackPos = jumpCrack.transform.position;
+        Vector3 endPos = new Vector3(crackPos.x - 100, crackPos.y + 100, crackPos.z);
+        Vector3 mid1Pos = new Vector3(startPos.x, startPos.y, 0);
+        Vector3 mid2Pos = new Vector3(endPos.x - 100, endPos.y + 100, 0);
+
+
+        jumpBezier = new Bezier(startPos, endPos, mid1Pos, mid2Pos);
+        moveBezierPercentage = 0;
+
+        
+    }
+
+    void makeJump() {
+       
     }
 
     public void JumpFromCaveFinished() {
@@ -205,18 +285,20 @@ public class HeroController : MonoBehaviour {
 
     void jumpFromCrack() {
 
-      //  Debug.Log("HC Jump from crack");
-
-        isFixing = false;
+        Debug.Log("HC Jump from crack");
+        currentHeroState = heroState.jumpingFromCrack;
+        //isFixing = false;
         canStrike = true;
         heroMotionController.Jump();
         heroJumpController.Jump();
 
         //startEmmitAssParticles();
-
+      
         audio.clip = startJump;
         audio.Play();
     }
+
+
 
     void strike() {
 //        Debug.Log("HC Strike");
@@ -225,9 +307,7 @@ public class HeroController : MonoBehaviour {
             heroMotionController.Strike();
 
             audio.clip = beginStrike;
-            audio.Play();
-
-        
+            audio.Play();   
     }
 
 
@@ -255,7 +335,7 @@ public class HeroController : MonoBehaviour {
     }
 
     public void Catch(CrackController crack, float followCameraDelay) {
-
+        fallCrack = crack;
         rockFixPoint = crack.getFixPointPosition();
 
      //   Debug.Log( "Fix point - " + rockFixPoint );
@@ -271,7 +351,7 @@ public class HeroController : MonoBehaviour {
         GMDataMngr.GameProgress.currentHeight = getHeight( transform.position );
         GameManager.sceneController.gameController.setHeight(GMDataMngr.GameProgress.currentHeight);
 
-        crack.gameObject.GetComponent<Collider2D>().enabled = false;
+      //  crack.gameObject.GetComponent<Collider2D>().enabled = false;
 
 //        if ( rock.hasCoin ) {
 //            GMDataMngr.GameProgress.totalCoinsCollected ++;
@@ -292,15 +372,21 @@ public class HeroController : MonoBehaviour {
         return (int) ( objectPosition.y - startHeight ) / 100;
     }
 
+    float getObjectPosY( float height ) {
+        return startHeight + height * 100;
+    }
+
     void fixRock() {
-        isFixing = true;
+      //  isFixing = true;
         canStrike = true;
         heroMotionController.Fix();
         isTouchesEnabled = true;
+        currentHeroState = heroState.fixing;
+        
     }
 
     void folowCamera() {
-       Debug.Log( "Camera FOLOW" );
+//       Debug.Log( "Camera FOLOW" );
         GameManager.HeroCamera.Follow();
     }
 
@@ -343,6 +429,12 @@ public class HeroController : MonoBehaviour {
         
     }
 
+    public void CondorSave() {
+       heroJumpController.SaveFall();
+       heroMotionController.SaveFall();
+        
+    }
+
     void setCondorPosition( Vector3 condorMarkPosition ) {
         
         Vector3 grabMark = condorCatchGO.transform.position;
@@ -354,29 +446,72 @@ public class HeroController : MonoBehaviour {
 
     void Update() {
 
-        if ( isCondorCatched ) {
+
+//        Debug.Log( "TOUCHES ENABLED - " + isTouchesEnabled );
+
+        if ( currentHeroState == heroState.condorCatched ) {
   
 
             setCondorPosition( GameManager.sceneController.getCatchHeroPos() );
             return;
         }
-        
 
-        if (!isFixing)
-            return;
 
-        
+        if ( currentHeroState == heroState.fixing ) {
 
-        Vector2 axeFixPoint = axeController.getFixedPointPosition();
-        fixVector = new Vector2(rockFixPoint.x - axeFixPoint.x, rockFixPoint.y - axeFixPoint.y);
+            Vector2 axeFixPoint = axeController.getFixedPointPosition();
+            fixVector = new Vector2( rockFixPoint.x - axeFixPoint.x, rockFixPoint.y - axeFixPoint.y );
 
-        if ( ( Mathf.Abs( fixVector.x ) < 1 ) &&
-             ( Mathf.Abs( fixVector.y ) < 1 ) ) {
-            isFixing = false;
+            if ( ( Mathf.Abs( fixVector.x ) < 1 ) &&
+                 ( Mathf.Abs( fixVector.y ) < 1 ) ) {
+                currentHeroState = heroState.normal;
+                return;
+            }
+
+            transform.position = new Vector3(
+                    transform.position.x + fixVector.x / 3,
+                    transform.position.y + fixVector.y / 3,
+                    transform.position.z );
+
             return;
         }
 
-        transform.position = new Vector3(transform.position.x + fixVector.x / 3, transform.position.y + fixVector.y / 3, transform.position.z);
+        if ( currentHeroState == heroState.jumpingFromCave ) {
+
+            float speed = 0.4f;
+          
+            if ( moveBezierPercentage > 1 ) {
+               // SetCameraToHero();
+                currentHeroState = heroState.fixing;
+                Catch( jumpCrack, 0.2f );
+                moveBezierPercentage = 1;
+                JumpFromCaveFinished();
+                isTouchesEnabled = true;
+                
+            }
+
+           // gameObject.transform.position = jumpBezier.GetBezierPointAtTime(moveBezierPercentage);
+
+            setHeroPosition(  jumpBezier.GetBezierPointAtTime(moveBezierPercentage) );
+          
+            if ( moveBezierPercentage < 0.2f ) {
+                speed = 3;
+            }
+            else if ( moveBezierPercentage < 0.6f ) {
+                speed = 2;
+            }
+
+            moveBezierPercentage += Time.deltaTime * speed ;
+        }
+
+    }
+
+
+    public void setHeroPosition(Vector3 fixPointPosition) {
+        Vector3 axePos = axeController.getFixedPointPosition();
+        Vector2 dPos = new Vector2(gameObject.transform.position.x - axePos.x, gameObject.transform.position.y - axePos.y);
+
+        gameObject.transform.position = new Vector3(fixPointPosition.x + dPos.x, fixPointPosition.y + dPos.y, gameObject.transform.position.z);
     }
 
     public void FlyFromCaveStarted() {

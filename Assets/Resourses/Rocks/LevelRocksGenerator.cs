@@ -199,6 +199,9 @@ public class LevelRocksGenerator : MonoBehaviour {
                 
             }
         }
+
+
+
         return resultRockGO;
     }
 

@@ -31,6 +31,8 @@ public class LevelRocksController : MonoBehaviour {
         StartRocks();
     }
 
+   
+
     public void StartRocks() {
 
         gameObject.transform.position = new Vector3(
