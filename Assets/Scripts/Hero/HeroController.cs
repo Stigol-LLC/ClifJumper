@@ -4,11 +4,13 @@ using System.Collections;
 
 public class HeroController : MonoBehaviour {
 
-    public AudioClip startJump;
+    public AudioClip finishKickedJump;
     public AudioClip catchRock;
     public AudioClip scream;
     public AudioClip beginStrike;
     public AudioClip kickedFromEti;
+    public AudioClip kickedFromEtiScream;
+    public AudioClip startJump;
 
     public Bounds heroBounds;
     public Vector2 coinDropPoint;
@@ -18,8 +20,8 @@ public class HeroController : MonoBehaviour {
     public GameObject assAccelerateParticles;
 
     public GameObject condorCatchGO;
-  
-	// Use this for initialization
+
+    // Use this for initialization
 
     private HeroJump heroJumpController;
     private HeroMotion heroMotionController;
@@ -29,10 +31,10 @@ public class HeroController : MonoBehaviour {
     private Vector3 startJumpHeroPos;
 
     private float startHeight;
- //   private Animator heroJumpAnimator;
-  //  private bool isJumpFromCave = true;
+    //   private Animator heroJumpAnimator;
+    //  private bool isJumpFromCave = true;
 
-   // private bool isFixing;
+    // private bool isFixing;
 
     private Vector2 fixVector;
     private Vector2 rockFixPoint;
@@ -42,9 +44,13 @@ public class HeroController : MonoBehaviour {
     private bool canStrike;
     private int coinsCollected;
     private bool isTouchesEnabled;
+    private int heroJumpHeight;
 
+    private int speedAnimationNumber;
+//  private bool showSpeed;
   //  private bool isCondorCatched;
     private Bezier jumpBezier;
+    private float jumpCaveSpeedBoost;
     private float moveBezierPercentage;
     private CrackController jumpCrack;
     private float jumpFromCaveHeight;
@@ -131,13 +137,17 @@ public class HeroController : MonoBehaviour {
     }
 
     public void condorRelease() {
+       // Debug.Log( "CRRRRR" );
         GameManager.HeroCamera.StopFollowing();
        // isCondorCatched = false;
         currentHeroState = heroState.normal;
        // CrackController crack =  GameManager.sceneController.levelRocksController.getClothestCrack( getFixPoint().y );
-        Catch( fallCrack, 0.3f );
+        Catch( fallCrack, 0.5f );
         axeController.SetCanCatch(true);
-       
+       heroMotionController.Strike();
+
+       audio.clip = catchRock;
+       audio.Play();
     }
 
     public void StartHero() {
@@ -197,9 +207,7 @@ public class HeroController : MonoBehaviour {
             return;
 
         if ( currentHeroState == heroState.waitingForKick ) {
-            jumpFromCave(100);
-         //   
-            
+            jumpFromCave(5, 0 , 0, 3, 0);
 
             Debug.Log( "JUMP FROM CAVE" );
         } else if ( !heroJumpController.isJumping ) {
@@ -213,7 +221,7 @@ public class HeroController : MonoBehaviour {
     }
 
     int normalizeHeight(int height) {
-        return 50;
+        return height;
       
         if ( height < 20 )
             return height;
@@ -235,24 +243,42 @@ public class HeroController : MonoBehaviour {
          return 20 + (height - 20) / 50;
     }
 
-    public void jumpFromCave(int height) {
+    public void jumpFromCave(int realHeight, int jumpHeight, int speedAnimationN, float speedBoost, int bootN) {
+
+        jumpCaveSpeedBoost = speedBoost;
+       
+
         isTouchesEnabled = false;
-        jumpFromCaveHeight = normalizeHeight( height );
+        jumpFromCaveHeight = normalizeHeight( realHeight );
         Debug.Log( "HC Jump from cave" );
 
        // isFixing = false;
-        GameManager.sceneController.levelRocksController.getCave().etiKickHero();
+        GameManager.sceneController.levelRocksController.getCave().etiKickHero(bootN);
         heroMotionController.KickedFromCave();
        // heroJumpController.FlyFromCave();
         
       //  isJumpFromCave = false;
-        Invoke( "startHeroJumpFromCave", 1.5f );
+        Invoke( "startHeroJumpFromCave", 1.6f );
+        Invoke("kickedSoundPlay", 1.4f);
 
-        
+        speedAnimationNumber = speedAnimationN;
+        heroJumpHeight = jumpHeight;
 
     }
 
+
+    void kickedSoundPlay() {
+        audio.clip = kickedFromEti;
+        audio.Play();
+    }
+
     void startHeroJumpFromCave() {
+
+        if ( speedAnimationNumber != 0 ) {
+            audio.clip = kickedFromEtiScream;
+            audio.Play();
+        }
+
         GameManager.HeroCamera.FollowJumpFromCave();
         currentHeroState = heroState.jumpingFromCave;
 
@@ -268,7 +294,7 @@ public class HeroController : MonoBehaviour {
         jumpBezier = new Bezier(startPos, endPos, mid1Pos, mid2Pos);
         moveBezierPercentage = 0;
 
-        
+        GameManager.sceneController.levelRocksController.getCave().stopFire();
     }
 
     void makeJump() {
@@ -280,12 +306,12 @@ public class HeroController : MonoBehaviour {
         heroMotionController.StrikeFromJumpCave();
         CrackController crack =  GameManager.sceneController.levelRocksController.getClothestCrack( getFixPoint().y );
         Catch( crack, 0.3f );
-        
+        GameManager.HeroCamera.StopFollowing();
     }
 
     void jumpFromCrack() {
-
-        Debug.Log("HC Jump from crack");
+        
+   //     Debug.Log("HC Jump from crack");
         currentHeroState = heroState.jumpingFromCrack;
         //isFixing = false;
         canStrike = true;
@@ -293,7 +319,7 @@ public class HeroController : MonoBehaviour {
         heroJumpController.Jump();
 
         //startEmmitAssParticles();
-      
+//      
         audio.clip = startJump;
         audio.Play();
     }
@@ -359,8 +385,8 @@ public class HeroController : MonoBehaviour {
 //            rock.collectCoin();
 //        }
 
-        audio.clip = catchRock;
-        audio.Play();
+//        audio.clip = catchRock;
+//        audio.Play();
 
         crack.heroCatch();
 
@@ -369,7 +395,11 @@ public class HeroController : MonoBehaviour {
     }
 
     public int getHeight( Vector3 objectPosition ) {
-        return (int) ( objectPosition.y - startHeight ) / 100;
+        return (int) (( objectPosition.y - startHeight ) / 100 + 0.5f);
+    }
+
+    public void setHeroHeight(int height, Vector3 objectPosition) {
+        startHeight = objectPosition.y - height * 100 - 100f;
     }
 
     float getObjectPosY( float height ) {
@@ -391,7 +421,7 @@ public class HeroController : MonoBehaviour {
     }
 
     public void GameOverStarted() {
-
+     
         audio.clip = scream;
         audio.Play();
 
@@ -444,6 +474,27 @@ public class HeroController : MonoBehaviour {
        
     }
 
+//    int getHeightKickValue() {
+//        switch ( speedAnimationNumber ) {
+//            case 0:
+//                return 50;
+//
+//            case 1:
+//                return 100;
+//
+//            case 2:
+//                return 500;
+//
+//            case 3:
+//                return 1000;
+//
+//            case 4:
+//                return 3000;
+//        }
+//
+//        return 0;
+//    }
+
     void Update() {
 
 
@@ -478,16 +529,26 @@ public class HeroController : MonoBehaviour {
 
         if ( currentHeroState == heroState.jumpingFromCave ) {
 
-            float speed = 0.4f;
+            float speed = 0.8f;
           
             if ( moveBezierPercentage > 1 ) {
                // SetCameraToHero();
+                setHeroHeight( heroJumpHeight, gameObject.transform.position );
+                GameManager.HeroCamera.setCatchShift();
                 currentHeroState = heroState.fixing;
-                Catch( jumpCrack, 0.2f );
+                heroMotionController.Strike();
+                Catch( jumpCrack, 0.5f );
                 moveBezierPercentage = 1;
                 JumpFromCaveFinished();
                 isTouchesEnabled = true;
-                
+
+                GameManager.sceneController.gameController.ShowMenu();
+
+
+                if ( speedAnimationNumber == 0 ) {
+                    audio.clip = finishKickedJump;
+                    audio.Play();
+                }
             }
 
            // gameObject.transform.position = jumpBezier.GetBezierPointAtTime(moveBezierPercentage);
@@ -495,13 +556,20 @@ public class HeroController : MonoBehaviour {
             setHeroPosition(  jumpBezier.GetBezierPointAtTime(moveBezierPercentage) );
           
             if ( moveBezierPercentage < 0.2f ) {
-                speed = 3;
+                
+
+                speed = 1.5f;
+              //  if (showSpeed)
+                GameManager.sceneController.paralaxBackgroundController.startSpeedEffect( 0.25f, 100, speedAnimationNumber );
             }
             else if ( moveBezierPercentage < 0.6f ) {
-                speed = 2;
+                
+                speed = 1;
+            } else if  (moveBezierPercentage > 0.8f) {
+                GameManager.sceneController.paralaxBackgroundController.stopSpeedEffect(0.25f, speedAnimationNumber);
             }
 
-            moveBezierPercentage += Time.deltaTime * speed ;
+            moveBezierPercentage += Time.deltaTime * speed * jumpCaveSpeedBoost ;
         }
 
     }
@@ -511,12 +579,11 @@ public class HeroController : MonoBehaviour {
         Vector3 axePos = axeController.getFixedPointPosition();
         Vector2 dPos = new Vector2(gameObject.transform.position.x - axePos.x, gameObject.transform.position.y - axePos.y);
 
-        gameObject.transform.position = new Vector3(fixPointPosition.x + dPos.x, fixPointPosition.y + dPos.y, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(fixPointPosition.x + dPos.x, fixPointPosition.y + dPos.y, -800);
     }
 
     public void FlyFromCaveStarted() {
-        audio.clip = kickedFromEti;
-        audio.Play();
+       
     }
 
 }

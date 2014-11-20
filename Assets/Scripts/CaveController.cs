@@ -7,9 +7,11 @@ public class CaveController : MonoBehaviour {
 
     private HeroCamera heroCamera;
     public GameObject etiGO;
+    private EtiController eti;
 
     private CaveController cave;
-    private Animator etiAnimator;
+
+    public GameObject fireGO;
 
     void OnDrawGizmosSelected()
     {
@@ -21,17 +23,19 @@ public class CaveController : MonoBehaviour {
     }
 
     void Awake() {
-        etiAnimator = etiGO.GetComponent<Animator>();
+       
         heroCamera = GameManager.HeroCamera;
-        
+        eti = etiGO.GetComponent<EtiController>();
     }
 
-    public void etiKickHero()
+    public void etiKickHero(int bootN)
     {
-        etiAnimator.Play("Eti_Kick");
+        eti.KickHero( bootN );
     }
 
     public Vector3 StartCave() {
+        fireGO.audio.Play();
+       
         setPosition(heroCamera.getCameraBounds().min);
         return getHeroStayPoint();
     }
@@ -54,6 +58,9 @@ public class CaveController : MonoBehaviour {
        
     }
 
+    public void stopFire() {
+        fireGO.audio.Stop();
+    }
   
 
 }

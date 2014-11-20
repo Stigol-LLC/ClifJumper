@@ -6,6 +6,8 @@ public class AxeController : MonoBehaviour {
     public Vector2 fixPoint;
     public GameObject particlesGO;
 
+   
+
     private ParticleEmitter scratchParticles;
 
     private bool isScratching;
@@ -30,10 +32,17 @@ public class AxeController : MonoBehaviour {
             CrackController crack = other.gameObject.GetComponent<CrackController>();
          //  Debug.Log( "Rock pos - " + crack.gameObject.transform.position );
 
-            GameManager.sceneController.hero.Catch(crack, 0);
+            GameManager.sceneController.hero.Catch(crack, 0.2f);
+
+            catchEnded();
         }
 
         prevRockID = rockID;
+    }
+
+    void catchEnded() {
+        audio.Play();
+        
     }
 
     void OnDrawGizmosSelected()

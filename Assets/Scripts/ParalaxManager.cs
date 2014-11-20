@@ -9,9 +9,12 @@ public class ParalaxManager : MonoBehaviour {
     public List<GameObject> backGroundParalaxList;
     private HeroCamera heroCamera;
     private List<ParalaxBackGroundController> backGroundParalaxControllers;
-    public GameObject JumpSpeedGO ;
 
-    private JumpSpeedController jumpSpeedEffectController;
+    public GameObject JumpSpeedGO1 ;
+    private JumpSpeedController jumpSpeedEffectController1;
+
+    public GameObject JumpSpeedGO2;
+    private JumpSpeedController jumpSpeedEffectController2;
 
     void Awake() {
         heroCamera = GameManager.HeroCamera;
@@ -23,7 +26,10 @@ public class ParalaxManager : MonoBehaviour {
             backGroundParalaxControllers.Add( bgController );
         }
 
-        jumpSpeedEffectController = JumpSpeedGO.GetComponent<JumpSpeedController>();
+        jumpSpeedEffectController1 = JumpSpeedGO1.GetComponent<JumpSpeedController>();
+        jumpSpeedEffectController2 = JumpSpeedGO2.GetComponent<JumpSpeedController>();
+    
+
     }
 
     public void RestartBackground() {
@@ -39,12 +45,32 @@ public class ParalaxManager : MonoBehaviour {
         }
     }
 
-    public void startSpeedEffect(float fadeTime) {
-        
+    public void startSpeedEffect(float fadeTime, float height, int EffectN) {
+
+        switch ( EffectN ) {
+            case 1:
+                jumpSpeedEffectController1.StartSpeed(fadeTime, height);
+                break;
+
+            case 2:
+                jumpSpeedEffectController2.StartSpeed(fadeTime, height);
+                break;
+        } 
+      //  jumpSpeedEffectController.StartSpeed( fadeTime, height );
     }
 
-    void stopSpeedEffect(float fadeTime) {
-        
+    public void stopSpeedEffect(float fadeTime, int EffectN)
+    {
+        switch (EffectN)
+        {
+            case 1:
+                jumpSpeedEffectController1.StopSpeed(fadeTime);
+                break;
+
+            case 2:
+                jumpSpeedEffectController2.StopSpeed(fadeTime);
+                break;
+        }  
     }
 
 }

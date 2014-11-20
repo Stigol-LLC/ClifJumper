@@ -10,24 +10,46 @@ public class JumpSpeedController : MonoBehaviour {
 
     private bool isPlaying;
 
+    private bool startTrigger;
+
     void Awake() {
-        uvAnimationRate = 1f;
-        isPlaying = true;
+        uvAnimationRate = 8f;
+        isPlaying = false;
+        startTrigger = false;
     }
 
     public void StartSpeed(float fadeTime, float height) {
+        if (startTrigger)
+            return;
+
+      //  Debug.Log( "START" );
+
+        gameObject.SetActive( true );
+
+
         Color prevColor = renderer.material.color;
         renderer.material.color = new Color(prevColor.r, prevColor.g, prevColor.b, 0);
       
         isPlaying = true;
         fadeRate = -1 / fadeTime ;
+        startTrigger = true;
     }
 
     public void StopSpeed( float fadeTime ) {
+       if (!startTrigger)
+           return;
+       // Debug.Log( "STOP!!!" );
         Color prevColor = renderer.material.color;
         renderer.material.color = new Color(prevColor.r, prevColor.g, prevColor.b, 1);
 
         fadeRate = 1 / fadeTime;
+        
+        Invoke( "turnOffSpeed", fadeTime + 0.1f );
+        startTrigger = false;
+    }
+
+    public void turnOffSpeed() {
+        gameObject.SetActive( false );
         isPlaying = false;
     }
 

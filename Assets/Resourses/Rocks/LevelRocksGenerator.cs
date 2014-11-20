@@ -115,7 +115,7 @@ public class LevelRocksGenerator : MonoBehaviour {
 
         int randN = Random.Range( 0, 100 );
 
-        if ( randN < 75 ) {
+        if ( randN < 50 ) {
             return false;
         }
 

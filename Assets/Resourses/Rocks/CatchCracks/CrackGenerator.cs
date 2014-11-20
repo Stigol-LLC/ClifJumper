@@ -24,7 +24,7 @@ public class CrackGenerator : MonoBehaviour {
     }
 
     public void collectCoin() {
-
+       GameManager.sceneController.levelRocksController.audio.Play();
 
         Vector3 heroBagPosition = GameManager.sceneController.hero.getCoinDropPoint();
         Vector3 midVector1 = new Vector3(coinGO.transform.position.x - 150, coinGO.transform.position.y + 50, coinGO.transform.position.z);

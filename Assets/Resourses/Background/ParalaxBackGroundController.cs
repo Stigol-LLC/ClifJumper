@@ -33,7 +33,7 @@ public class ParalaxBackGroundController : MonoBehaviour {
 
     public void StartBackground()
     {
-        
+
         gameObject.transform.localPosition = new Vector3(0, 0, gameObject.transform.localPosition.z);
         DestroyQueueBackGrounds();
 
@@ -118,8 +118,8 @@ public class ParalaxBackGroundController : MonoBehaviour {
     }
 
      private Vector3 getBackgroundPos( Vector2 dPosition) {
-        
-         Vector2 backDpos = new Vector2(dPosition.x * moveKoef , dPosition.y * moveKoef );
+//        Debug.Log( "DPOS - " + dPosition );
+           Vector2 backDpos = new Vector2(dPosition.x * moveKoef , dPosition.y * moveKoef );
            return new Vector3(backgroundStartPosition.x + backDpos.x, backgroundStartPosition.y + backDpos.y , backgroundStartPosition.z);
        }
 

@@ -83,6 +83,8 @@ public class CondorController : MonoBehaviour {
         isReleasingHero = false;
 
         popUpPosition = crackPos;
+
+        audio.Play();
     }
 
     void SetBezier(Vector3 startPosition, Vector3 mid1Pos, Vector3 mid2Pos, Vector3 endPosition) {
@@ -103,7 +105,7 @@ public class CondorController : MonoBehaviour {
             return;
 
 //        Debug.Log( "POs - " + transform.position );
-
+        float moveKoef = 1;
         Vector3 heroPos;
         switch ( currentCondorState ) {
                 case condorState.flyingToHero:
@@ -134,8 +136,6 @@ public class CondorController : MonoBehaviour {
                 if (currentBezierPercentage > 1.0f)
                 {
 
-                    
-
                     currentBezierPercentage = 1.0f;
                     PutHeroUp(popUpPosition);
                     currentCondorState = condorState.flyingToRock;
@@ -145,6 +145,11 @@ public class CondorController : MonoBehaviour {
                 break;
 
                 case condorState.flyingToRock:
+                moveKoef = 0.5f;
+
+                if ( currentBezierPercentage > 0.8f )
+                    moveKoef = 0.3f;
+
                 if ( (currentBezierPercentage > 0.9f) && (!isReleasingHero) ) {
                     ReleaseHero();
                 }
@@ -161,12 +166,14 @@ public class CondorController : MonoBehaviour {
                 break;
 
                 case condorState.releasingHero:
+                
                 FlyAway();
                 currentCondorState = condorState.flyingAway;
                 return;
                 break;
 
                   case condorState.flyingAway:
+                moveKoef = 0.4f;
                 if (currentBezierPercentage > 1.0f)
                 {
                     currentBezierPercentage = 1.0f;  
@@ -181,12 +188,10 @@ public class CondorController : MonoBehaviour {
 
         gameObject.transform.position = getCondorPositionFromGrabPoint(catchHeroBezier.GetBezierPointAtTime(currentBezierPercentage));
 
-        float dT = Time.deltaTime;
+        float dT = Time.deltaTime * moveKoef;
 
-        if ( currentCondorState == condorState.flyingToRock )
-            dT /= 2;
-
-        currentBezierPercentage +=  dT;
+       
+        currentBezierPercentage +=  dT ;
         
     }
 
@@ -223,11 +228,12 @@ public class CondorController : MonoBehaviour {
 
      //   ve
 
-        condorMid1Pos = new Vector3(grabMark.transform.position.x - 100, grabMark.transform.position.y - 100, grabMark.transform.position.z);
+        condorMid1Pos = new Vector3(grabMark.transform.position.x - 150, grabMark.transform.position.y + 100, grabMark.transform.position.z);
         condorMid2Pos = new Vector3(endPosition.x - 100, endPosition.y - 100, heroPos.z);
 
+        Vector3 endPos = new Vector3(endPosition.x - 150, endPosition.y + 250, endPosition.z);
 
-        SetBezier( heroPos, condorMid1Pos, condorMid2Pos, endPosition);
+        SetBezier( grabMark.transform.position, condorMid1Pos, condorMid2Pos, endPos);
 
         GameManager.sceneController.hero.condorCatch();
         grabMarkPos = grabMark.transform.position;
@@ -238,13 +244,15 @@ public class CondorController : MonoBehaviour {
     }
 
     void FlyAway() {
-        Vector3 heroPos = getCatchHeroPosition();
-        Vector3 endPos = new Vector3(heroPos.x + 800, heroPos.y + 300, heroPos.z);
+       // Vector3 heroPos = getCatchHeroPosition();
+
+        Vector3 startPos = grabMark.transform.position;
+        Vector3 endPos = new Vector3(startPos.x + 800, startPos.y + 300, startPos.z);
         currentBezierPercentage = 0;
-        condorMid1Pos = new Vector3(heroPos.x - 100, heroPos.y - 100, heroPos.z);
-        condorMid2Pos = new Vector3(endPos.x - 100, endPos.y - 100, heroPos.z);
+        condorMid1Pos = new Vector3(startPos.x - 100, startPos.y - 100, startPos.z);
+        condorMid2Pos = new Vector3(endPos.x - 100, endPos.y - 100, startPos.z);
 
 
-        SetBezier(heroPos, condorMid1Pos, condorMid2Pos, endPos);
+        SetBezier(startPos, condorMid1Pos, condorMid2Pos, endPos);
     }
 }
