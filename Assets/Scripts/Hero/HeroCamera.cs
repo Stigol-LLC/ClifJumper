@@ -86,7 +86,6 @@ public class HeroCamera : MonoBehaviour {
         Vector3 heroSizes = GameManager.sceneController.hero.getBounds().size;
         realCameraShift = new Vector3(
                 0,
-     
               getCameraBounds().size.y / 2 - heroSizes.y ,
                 heroCamera.transform.position.z );
         
@@ -164,53 +163,55 @@ public class HeroCamera : MonoBehaviour {
     void Update() {
  
       //  Debug.Log( "Following - " + isFollowing + "  Death follow - " + deathFollow );
-        
-        if ( !( ( isFollowing ) || ( deathFollow ) || ( isCondorFollowing ) || ( jumpFromCaveFollow ) ) ) {
-            paralaxManager.ParalaxUpdate();
-            return;
-        }
+
+        if ( ( ( isFollowing ) || ( deathFollow ) || ( isCondorFollowing ) || ( jumpFromCaveFollow ) ) ) {
 
 
 
 
-        Vector3 cameraPosition = heroCamera.transform.position;
 
-        float dX = FollowGameObject.transform.position.x - cameraPosition.x + realCameraShift.x;
-        float dY = FollowGameObject.transform.position.y - cameraPosition.y + realCameraShift.y;
+            Vector3 cameraPosition = heroCamera.transform.position;
 
-       Vector2 dCameraShift = new Vector2(newCameraShift.x - realCameraShift.x, newCameraShift.y - realCameraShift.y);
+            float dX = FollowGameObject.transform.position.x - cameraPosition.x + realCameraShift.x;
+            float dY = FollowGameObject.transform.position.y - cameraPosition.y + realCameraShift.y;
 
-        realCameraShift = new Vector3(realCameraShift.x + dCameraShift.x / 8, realCameraShift.y + dCameraShift.y / 8);
+            Vector2 dCameraShift = new Vector2(
+                    newCameraShift.x - realCameraShift.x,
+                    newCameraShift.y - realCameraShift.y );
 
-        if ( isCondorFollowing ) {
-            //dX = FollowGameObject.transform.position.x;
-        }
+            realCameraShift = new Vector3(
+                    realCameraShift.x + dCameraShift.x / 8,
+                    realCameraShift.y + dCameraShift.y / 8 );
 
-       // float dX = 0;
-        
+            if ( isCondorFollowing ) {
+                //dX = FollowGameObject.transform.position.x;
+            }
 
-        if ( ( Mathf.Abs( dX ) < 2 ) &&
-             ( Mathf.Abs( dY ) < 2 ) )
-            isFollowing = false;
+            // float dX = 0;
 
 
-        float smoothKoef = 16;
+            if ( ( Mathf.Abs( dX ) < 2 ) &&
+                 ( Mathf.Abs( dY ) < 2 ) )
+                isFollowing = false;
 
-        if ( deathFollow == true )
-            smoothKoef = 4;
 
-        if (jumpFromCaveFollow)
-            smoothKoef = 6;
+            float smoothKoef = 12;
 
-        if ( isCondorFollowing )
-            smoothKoef = 16;
+            if ( deathFollow == true )
+                smoothKoef = 4;
 
-       // Debug.Log( "Smooth koef - " + smoothKoef );
+            if ( jumpFromCaveFollow )
+                smoothKoef = 6;
 
-        //Debug.Log( "JF - " + jumpFromCaveFollow + "  DF - " + deathFollow + "CondorF" + isCondorFollowing );
+            if ( isCondorFollowing )
+                smoothKoef = 16;
 
-        float smoothDX = dX / smoothKoef;
-        float smoothDY = dY / smoothKoef;
+            // Debug.Log( "Smooth koef - " + smoothKoef );
+
+          //  Debug.Log( "JF - " + jumpFromCaveFollow + "  DF - " + deathFollow + "CondorF" + isCondorFollowing );
+
+            float smoothDX = dX / smoothKoef;
+            float smoothDY = dY / smoothKoef;
 
 
 
@@ -219,10 +220,15 @@ public class HeroCamera : MonoBehaviour {
 //
 //        if ( Mathf.Abs(smoothDY) < 2 )
 //            smoothDY = 1 * Mathf.Sign( smoothDY );
-        
-        heroCamera.transform.position = new Vector3(cameraPosition.x + smoothDX, cameraPosition.y + smoothDY, cameraPosition.z);
+
+            heroCamera.transform.position = new Vector3(
+                    cameraPosition.x + smoothDX,
+                    cameraPosition.y + smoothDY,
+                    cameraPosition.z );
 //   Debug.Log( "Camera pos - " + heroCamera.transform.position + "  Follow pos - " + FollowGameObject.transform.position );
 //       Debug.Log( "Pos - " + heroCamera.transform.position + "sDX - " + smoothDX + "sDY - " + smoothDY);
+        }
+
         paralaxManager.ParalaxUpdate();
         
     

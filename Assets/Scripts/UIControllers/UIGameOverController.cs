@@ -23,8 +23,11 @@ public class UIGameOverController : MonoBehaviour {
         bestScoreGO.GetComponent<Text>().text = bestScore.ToString();
 
         GMDataMngr.GameProgress.currentHeight = 0;
+        GMDataMngr.GameProgress.bestHeight = bestScore;
 
         GMDataMngr.SyncTool.SyncGameProgress();
+
+//        Debug.Log( "SHOW MENU" );
 
         animation.Play("ShowMenu");
     }

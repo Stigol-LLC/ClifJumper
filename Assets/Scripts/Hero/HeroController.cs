@@ -54,6 +54,9 @@ public class HeroController : MonoBehaviour {
     private float moveBezierPercentage;
     private CrackController jumpCrack;
     private float jumpFromCaveHeight;
+
+    private Vector3 prevCatchPosition;
+
     enum heroState {
         waitingForKick,
         jumpingFromCave,
@@ -207,7 +210,7 @@ public class HeroController : MonoBehaviour {
             return;
 
         if ( currentHeroState == heroState.waitingForKick ) {
-            jumpFromCave(5, 0 , 0, 3, 0);
+            jumpFromCave(7, 0 , 0, 3, 0);
 
             Debug.Log( "JUMP FROM CAVE" );
         } else if ( !heroJumpController.isJumping ) {
@@ -306,6 +309,8 @@ public class HeroController : MonoBehaviour {
         heroMotionController.StrikeFromJumpCave();
         CrackController crack =  GameManager.sceneController.levelRocksController.getClothestCrack( getFixPoint().y );
         Catch( crack, 0.3f );
+      //  GameManager.HeroCamera.FollowGameObject = gameObject;
+
         GameManager.HeroCamera.StopFollowing();
     }
 
@@ -371,7 +376,7 @@ public class HeroController : MonoBehaviour {
         heroJumpController.CatchRock();
 
     //    GameManager.HeroCamera.Follow();
-        Invoke( "fixRock", 0.1f );
+        Invoke( "fixRock", 0.01f );
         Invoke("folowCamera", followCameraDelay);
 
         GMDataMngr.GameProgress.currentHeight = getHeight( transform.position );
@@ -471,7 +476,7 @@ public class HeroController : MonoBehaviour {
         Vector2 dPos = new Vector3(transform.position.x - grabMark.x, transform.position.y - grabMark.y);
 
         transform.position = new Vector3(condorMarkPosition.x + dPos.x, condorMarkPosition.y + dPos.y, transform.position.z);
-       
+        prevCatchPosition = transform.position;
     }
 
 //    int getHeightKickValue() {

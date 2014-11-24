@@ -22,7 +22,7 @@ public class ParalaxManager : MonoBehaviour {
         foreach (GameObject backGameObject in backGroundParalaxList)
         {
             ParalaxBackGroundController bgController = backGameObject.GetComponent<ParalaxBackGroundController>();
-            bgController.InitBackGround(heroCamera);
+      //      bgController.InitBackGround(heroCamera);
             backGroundParalaxControllers.Add( bgController );
         }
 
@@ -30,6 +30,17 @@ public class ParalaxManager : MonoBehaviour {
         jumpSpeedEffectController2 = JumpSpeedGO2.GetComponent<JumpSpeedController>();
     
 
+    }
+
+
+
+    public void InitBackGround() {
+        foreach (GameObject backGameObject in backGroundParalaxList)
+        {
+           ParalaxBackGroundController bgController = backGameObject.GetComponent<ParalaxBackGroundController>();
+           bgController.InitBackGround(heroCamera);
+          
+        }
     }
 
     public void RestartBackground() {

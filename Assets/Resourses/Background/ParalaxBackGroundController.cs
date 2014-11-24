@@ -101,6 +101,8 @@ public class ParalaxBackGroundController : MonoBehaviour {
 
 
         paralaxPosition = getBackgroundPos(getCameraDPos(heroCamera.transform.position));
+//       Debug.Log( "Paralax pos - " + paralaxPosition );
+        
         transform.localPosition = getParalaxPosition(paralaxPosition, prevParalaxPosition);
         prevParalaxPosition = paralaxPosition;
 
@@ -119,7 +121,7 @@ public class ParalaxBackGroundController : MonoBehaviour {
 
      private Vector3 getBackgroundPos( Vector2 dPosition) {
 //        Debug.Log( "DPOS - " + dPosition );
-           Vector2 backDpos = new Vector2(dPosition.x * moveKoef , dPosition.y * moveKoef );
+           Vector2 backDpos = new Vector2(dPosition.x * moveKoef * 0.5f , dPosition.y * moveKoef );
            return new Vector3(backgroundStartPosition.x + backDpos.x, backgroundStartPosition.y + backDpos.y , backgroundStartPosition.z);
        }
 

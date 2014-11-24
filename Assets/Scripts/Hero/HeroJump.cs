@@ -43,7 +43,7 @@ public class HeroJump : MonoBehaviour {
 
     public void CondorSave() {
         heroJumpAnimator.Play( "HeroController_CondorSave" );
-        GameManager.HeroCamera.FollowGameObject = GameManager.sceneController.hero.gameObject;
+       // GameManager.HeroCamera.FollowGameObject = GameManager.sceneController.hero.gameObject;
     }
 
     public void FlyFromCave() {

@@ -49,8 +49,14 @@ public class SceneController : MonoBehaviour {
         gameOverController.HideMenu();
         gameController.HideMenu();
         GameManager.sceneController.hero.StartHero();
+
+        paralaxBackgroundController.InitBackGround();
+        
         GameManager.HeroCamera.StartCamera();
         levelRocksController.StartRocks();
+
+
+        
         paralaxBackgroundController.RestartBackground();
 
         Vector3 heroStayPoint = GameManager.sceneController.levelRocksController.getCave().StartCave();

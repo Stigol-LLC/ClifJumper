@@ -245,7 +245,7 @@ public class CondorController : MonoBehaviour {
 
     void FlyAway() {
        // Vector3 heroPos = getCatchHeroPosition();
-
+        GameManager.HeroCamera.FollowGameObject = GameManager.sceneController.heroGO;
         Vector3 startPos = grabMark.transform.position;
         Vector3 endPos = new Vector3(startPos.x + 800, startPos.y + 300, startPos.z);
         currentBezierPercentage = 0;
